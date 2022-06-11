@@ -6,6 +6,12 @@
 #include <stdexcept>
 #include "allocation-math.h"
 
+#ifdef _MSC_VER
+#define RESET_CODE 0xcd
+#else
+#define RESET_CODE 0x00
+#endif
+
 class Allocator
 {
 public:
@@ -13,9 +19,9 @@ public:
     Allocator(const Allocator& allocator);
     Allocator& operator=(const Allocator& allocator);
     virtual ~Allocator();
-
-    template<class T>
-    T* allocate(const std::size_t& size);
+    
+    template<typename T, std::size_t size = 1, typename ...Args>
+    T* allocate(Args... args);
 
     virtual void deallocate(void* p) = 0;
 
@@ -44,10 +50,16 @@ protected:
     std::size_t m_allocationSize;
 };
 
-template<class T>
-inline T* Allocator::allocate(const std::size_t& size)
+template<typename T, std::size_t size, typename ...Args>
+inline T* Allocator::allocate(Args... args)
 {
-    return static_cast<T*>(allocate_(size));
+    T* t = static_cast<T*>(allocate_(size * sizeof(T)));
+    for(std::size_t i = 0; i < size; ++i)
+    {
+        *(t + i) = T(std::forward<Args>(args)...);
+    }
+
+    return t;
 }
 
 inline const byte_t* Allocator::start() const

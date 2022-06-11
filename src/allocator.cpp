@@ -32,7 +32,7 @@ Allocator::~Allocator()
 
 void Allocator::reset()
 {
-    memset(m_start, 0, m_size);
+    memset(m_start, RESET_CODE, m_size);
     m_used = 0;
     m_allocationSize = 0;
 }
