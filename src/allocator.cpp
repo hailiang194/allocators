@@ -30,6 +30,11 @@ Allocator::~Allocator()
     m_start = nullptr;
 }
 
+void Allocator::deallocate(void* p)
+{
+    assert(p != nullptr && p > m_start && (byte_t*)p - m_start < m_size);
+}
+
 void Allocator::reset()
 {
     memset(m_start, RESET_CODE, m_size);

@@ -9,7 +9,7 @@ public:
     ArenaAllocator(const std::size_t& size);
     ArenaAllocator(const ArenaAllocator& allocator);
     ArenaAllocator& operator=(const ArenaAllocator& allocator);
-    ~ArenaAllocator();
+    virtual ~ArenaAllocator();
 
     void deallocate(void* p) override;
 protected:

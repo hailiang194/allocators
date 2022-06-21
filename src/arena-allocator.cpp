@@ -26,6 +26,7 @@ ArenaAllocator::~ArenaAllocator()
 
 void ArenaAllocator::deallocate(void* p)
 {
+    Allocator::deallocate(p);
     //arena allocator doesn't deallocate
 }
 

@@ -4,6 +4,7 @@
 #include <cstdlib>
 #include <cstring>
 #include <stdexcept>
+#include <cassert>
 #include "allocation-math.h"
 
 #ifdef _MSC_VER
@@ -23,7 +24,7 @@ public:
     template<typename T, std::size_t size = 1, typename ...Args>
     T* allocate(Args... args);
 
-    virtual void deallocate(void* p) = 0;
+    virtual void deallocate(void* p);
 
     void reset();
 

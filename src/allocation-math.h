@@ -9,5 +9,6 @@ typedef unsigned char byte_t;
 
 byte_t alignForwardAdjustment(const void* address);
 
+byte_t alignForwardAdjustmentWithHeader(const void* address, const byte_t& headerSize);
 
 #endif //ALLOCATION_MATH_H
