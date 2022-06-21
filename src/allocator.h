@@ -24,6 +24,7 @@ public:
     template<typename T, std::size_t size = 1, typename ...Args>
     T* allocate(Args... args);
 
+    //WARNING: you have to call the destructor manually
     virtual void deallocate(void* p);
 
     void reset();
@@ -57,7 +58,8 @@ inline T* Allocator::allocate(Args... args)
     T* t = static_cast<T*>(allocate_(size * sizeof(T)));
     for(std::size_t i = 0; i < size; ++i)
     {
-        *(t + i) = T(std::forward<Args>(args)...);
+        T* address = t + i;
+        address = new ((void*)address) T(std::forward<Args>(args)...);
     }
 
     return t;

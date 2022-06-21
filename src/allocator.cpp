@@ -6,6 +6,7 @@ Allocator::Allocator(const std::size_t& size)
     m_size = size;
     m_used = 0;
     m_allocationSize = 0;
+    reset();
 }
 
 Allocator::Allocator(const Allocator& allocator)

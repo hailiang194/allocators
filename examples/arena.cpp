@@ -6,7 +6,7 @@
 void displayArena(const ArenaAllocator& allocator)
 {
     std::cout << "Memory: " << std::endl;
-    for(auto i = 0; i < 20; ++i)
+    for(auto i = 0; i < allocator.size(); ++i)
     {
         std::cout << "0x" << std::setfill('0') << std::setw(2) << std::hex << static_cast<int>(*(allocator.start() + i)) << " ";
     }
