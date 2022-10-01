@@ -8,6 +8,7 @@ set(allocators_public_headers
     src/allocator.h
     src/arena-allocator.h
     src/stack-allocator.h
+    src/pool-allocator.h
 )
 
 set(allocators_sources
@@ -15,6 +16,7 @@ set(allocators_sources
     src/allocator.cpp
     src/arena-allocator.cpp
     src/stack-allocator.cpp
+    src/pool-allocator.cpp
 )
 
 add_library(allocators ${allocators_public_headers} ${allocators_sources})

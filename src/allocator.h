@@ -46,10 +46,10 @@ protected:
 
     virtual void* allocate_(const std::size_t& size) = 0;
 
-    byte_t* m_start;
-    std::size_t m_size; 
-    std::size_t m_used;
-    std::size_t m_allocationSize;
+    byte_t* m_start; //start pointer
+    std::size_t m_size; //total memory of allocator
+    std::size_t m_used; //total memory has been used
+    std::size_t m_allocationSize; //total elements has been allocated in this allocation
 };
 
 template<typename T, std::size_t size, typename ...Args>
